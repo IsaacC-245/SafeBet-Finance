@@ -1,0 +1,25 @@
+/* Reset default spacing and set box-sizing globally */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.split-container {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.half-column {
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+}
+
+/* Rows fill equally and are padded with no overlap */
+.row {
+    flex: 1;
+    padding: 16px;
+    border: 1px solid #ccc;
+}
