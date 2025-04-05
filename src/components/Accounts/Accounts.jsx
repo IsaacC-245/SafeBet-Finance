@@ -75,30 +75,6 @@ const Accounts = () => {
                             </Link>
                         </li>
                         <li className="nav-item">
-                            <Link to="/investments" className="nav-link">
-                                <TrendingDown size={20} />
-                                <span className="nav-text">"Investments"</span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/rewards" className="nav-link">
-                                <Gift size={20} />
-                                <span className="nav-text">Rewards</span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/benefits" className="nav-link">
-                                <Award size={20} />
-                                <span className="nav-text">SafeBet Benefits</span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
-                            <Link to="/settings" className="nav-link">
-                                <Settings size={20} />
-                                <span className="nav-text">Settings</span>
-                            </Link>
-                        </li>
-                        <li className="nav-item">
                             <Link to="/login" className="nav-link" onSubmit={(e) => logout(e)}>
                                 <LogOut size={20} />
                                 <span className="nav-text">Logout</span>
