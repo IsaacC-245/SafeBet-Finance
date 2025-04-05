@@ -18,7 +18,7 @@ body {
 }
 
 .form-signin {
-    width: 100%;
+    width: 00%;
     max-width: 330px;
     padding: 50px;
     margin: 0 auto;
@@ -70,8 +70,8 @@ body {
 .dashboard-container {
     display: flex;
     justify-content: center;
-    gap: 2rem;
-    padding: 2rem;
+    gap: 3rem;
+    padding: 3rem;
     font-family: sans-serif;
     /*background-color: #000;*/
     /*min-height: 100vh;*/
@@ -79,11 +79,12 @@ body {
 }
 
 .login-box, .gambling-box {
-    background-color: #fdfaf6;
-    color: #000;
+    background-color: #fff;
+    color: #303030;
     border-radius: 1rem;
     padding: 2rem;
-    width: 450px;
+    width: 400px;
+    height: 400px;
 }
 
 .login-box input {
@@ -95,41 +96,41 @@ body {
     border: 1px solid #ccc;
 }
 
-.account-summary {
-    margin-top: 2rem;
-}
+/*.account-summary {*/
+/*    margin-top: 2rem;*/
+/*}*/
 
-.account-summary div {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 0.5rem;
-}
+/*.account-summary div {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    margin-bottom: 0.5rem;*/
+/*}*/
 
 .gambling-box {
     text-align: center;
-    background-color: #000;
+    background-color: #303030;
     color: #fff;
 }
 
-.wheel {
-    width: 120px;
-    height: 120px;
-    background: conic-gradient(#683024 0deg 45deg, white 45deg 90deg, #683024 90deg 135deg, white 135deg 180deg, #683024 180deg 225deg, white 225deg 270deg, #683024 270deg 315deg, white 315deg 360deg);
-    border-radius: 50%;
-    margin: 1rem auto;
-}
+/*.wheel {*/
+/*    width: 120px;*/
+/*    height: 120px;*/
+/*    background: conic-gradient(#683024 0deg 45deg, white 45deg 90deg, #683024 90deg 135deg, white 135deg 180deg, #683024 180deg 225deg, white 225deg 270deg, #683024 270deg 315deg, white 315deg 360deg);*/
+/*    border-radius: 50%;*/
+/*    margin: 1rem auto;*/
+/*}*/
 
-.spin-btn {
-    background-color: #333;
-    color: #fff;
-    padding: 0.6rem 1.5rem;
-    border: none;
-    border-radius: 0.3rem;
-    margin-bottom: 1rem;
-}
+/*.spin-btn {*/
+/*    background-color: #333;*/
+/*    color: #fff;*/
+/*    padding: 0.6rem 1.5rem;*/
+/*    border: none;*/
+/*    border-radius: 0.3rem;*/
+/*    margin-bottom: 1rem;*/
+/*}*/
 
-.crypto-balance {
-    display: flex;
-    justify-content: space-between;
-    padding: 0 2rem;
-}
+/*.crypto-balance {*/
+/*    display: flex;*/
+/*    justify-content: space-between;*/
+/*    padding: 0 2rem;*/
+/*}*/

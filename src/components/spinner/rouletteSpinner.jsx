@@ -137,10 +137,10 @@ const RouletteSpinner = () => {
 
   return (
     <div className="roulette-container">
-      <div className="controls">
-        <button onClick={handleRandomSpin}>RND</button>
-        <button onClick={() => handleSpecificSpin(0)}>0</button>
-      </div>
+      {/*<div className="controls">*/}
+      {/*  <button onClick={handleRandomSpin}>RND</button>*/}
+      {/*  <button onClick={() => handleSpecificSpin(0)}>0</button>*/}
+      {/*</div>*/}
       
       <div className={`roulette ${isBusy ? 'busy' : ''}`}>
         <div className="spinner" ref={spinnerRef}></div>
@@ -148,7 +148,7 @@ const RouletteSpinner = () => {
         <div className="markers">
           <div className="triangle"></div>
         </div>
-        <div className="button" onClick={handleRandomSpin}>
+        <div className="button" onClick={() => handleSpecificSpin(0)}>
           <span>SPIN</span>
         </div>
       </div>

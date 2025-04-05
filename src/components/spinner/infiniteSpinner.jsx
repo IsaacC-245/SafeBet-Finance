@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import './rouletteSpinner.css';
+import './infiniteSpinner.css';
 
 const InfiniteSpinner = () => {
   const [isBusy, setIsBusy] = useState(false);

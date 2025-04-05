@@ -8,6 +8,7 @@ import SplitPage from './components/splitPage/SplitPage'
 import DataProvider from "./DataProvider";
 import Dashboard2 from "./components/dashboardTransactionTesting/Dashboard"
 import ModalDemo from "./components/ModalDemo/ModalDemo";
+import SpinnerModal from "./components/spinner/spinnerModal";
 import Transactions from "./components/Transactions/transactions";
 
 
@@ -24,6 +25,7 @@ function App() {
                 <Route path="/Demo" element={<ModalDemo/>}/>
                 <Route path="*" element={<NoPage />} />
                 <Route path="/register" element={<Register />} />
+                <Route path="/spinnerModal" element={<SpinnerModal/>}/>
             </Routes>
           </BrowserRouter>
       </DataProvider>
