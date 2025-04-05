@@ -15,20 +15,36 @@ import {
   TrendingDown,
   Heading
 } from 'lucide-react';
+import CoinFlipGame from "../coinflip/CoinFlipGame";
 
 const Dashboard = () => {
   const { user, updateBalance } = useContext(DataContext)
   const [isModalopen, setModalOpen] = useState(false);
   const [depositAmount, setDepositAmount] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [lastResult, setLastResult] = useState(null);
+
+  const handleFlipResult = (didWin) => {
+    setLastResult(false);
+    if (didWin) {
+      updateBalance("Deposit", depositAmount*2, user);
+    } else {
+    }
+  };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
   };
 
-  const handleDeposit = () => {
+  const handleDepositAttempt = () => {
+    setLastResult(null)
     if(depositAmount > 0){
       setModalOpen(true)
+    }
+  };
+
+  const handleDeposit = () => {
+    if(lastResult==null){
       updateBalance("Deposit", depositAmount, user);
     }
   };
@@ -139,14 +155,17 @@ const Dashboard = () => {
                       className="amount-input"
                       onChange={(e) => setDepositAmount(e.target.value)}
                   />
-                  <button className="update-button" onClick={handleDeposit}>Deposit</button>
+                  <button className="update-button" onClick={handleDepositAttempt}>Deposit</button>
                 </div>
 
                 {isModalopen && (
-                    <Modal onClose={() => setModalOpen(false)}>
+                    <Modal onClose={() => {
+                      setModalOpen(false);
+                      handleDeposit(); // Replace this with whatever function you want to run
+                    }}>
                       <h2>DOUBLE NOW</h2>
-                      <p>Deposit {depositAmount*2} is a click away~</p>
-                      <RouletteSpinner />
+                      <p>With just a click deposit {depositAmount*2}!</p>
+                      <CoinFlipGame onResult={handleFlipResult} />
                     </Modal>
                 )}
               </div>
