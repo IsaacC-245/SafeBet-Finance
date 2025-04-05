@@ -3,6 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
 import RouletteSpinner from "../spinner/rouletteSpinner";
+import Stocks from "../Stocks";
 
 import dogeUser from "../../assets/imgs/doge-user.jpg";
 
@@ -283,7 +284,7 @@ const UnstableDashboard = () => {
                           <div className="card-body">
                             <p>Earnings/Losses: +$1,200 / -$300</p>
                             <div className="chart-placeholder">
-                              {/* Insert Stocks Chart Component Here*/}
+                              <Stocks />
                             </div>
                           </div>
                         </div>
