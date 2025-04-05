@@ -1,4 +1,4 @@
-import React, {useContext, useState} from "react";
+import React, { useState, useRef, useEffect, useContext } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
@@ -25,11 +25,12 @@ import {
   Club,
   Bitcoin,
   WalletMinimal,
-  Vault,
+  Vault, SpeakerIcon,
 } from "lucide-react";
 import {DataContext} from "../../DataProvider";
 import Modal from "../Modal";
 import CoinFlipGame from "../coinflip/CoinFlipGame";
+import HoverAudio from "../HoverAudio";
 
 const UnstableDashboard = () => {
   const { logout } = useContext(DataContext)
@@ -38,6 +39,12 @@ const UnstableDashboard = () => {
   const [isModalopen, setModalOpen] = useState(false);
   const [depositAmount, setDepositAmount] = useState(0);
   const [lastResult, setLastResult] = useState(null);
+  const audioRef = useRef(null);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+
+  const enableAudio = () => {
+    setAudioEnabled(true);
+  };
 
   const handleFlipResult = (didWin) => {
     setLastResult(false);
@@ -87,10 +94,11 @@ const UnstableDashboard = () => {
           <button className="icon-button">
             <Settings size={20} />
           </button>
-          <button className="icon-button notification">
-            <Bell size={20} />
-            <span className="notification-badge"></span>
-          </button>
+          {!audioEnabled && (
+              <button onClick={enableAudio} className="icon-button notification">
+                <SpeakerIcon size={20} />
+              </button>
+          )}
           <div className="user-avatar">
             <img src={dogeUser} alt="User" />
           </div>
@@ -344,26 +352,32 @@ const UnstableDashboard = () => {
               {/* Right Column */}
               <div className="col-md-6">
                 {/* Row 1: Potential Winnings */}
-                <div className="row mb-3">
-                  <div className="col-12">
-                    <div className="winnings-section">
-                      <h3>Potential Winnings</h3>
-                      {/* Display potential winnings based on recent wins */}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Row 2: Spinning Roulette Wheel */}
-                <div className="row mb-3">
-                  <div className="col-12">
-                    <div className="roulette-section">
-                      <h3>Place Your Bet</h3>
-                      <div className="gambling-box">
-                        {!isModalopen && <RouletteSpinner />}
+                <HoverAudio src="/winning.mp3" enabled={audioEnabled}>
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <div className="winnings-section">
+                        <h3>Potential Winnings</h3>
+                        {/* Display potential winnings based on recent wins */}
                       </div>
                     </div>
                   </div>
-                </div>
+                </HoverAudio>
+
+
+                <HoverAudio src="/gambling.mp3" enabled={audioEnabled}>
+                  {/* Row 2: Spinning Roulette Wheel */}
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <div className="roulette-section">
+                        <h3>Place Your Bet</h3>
+                        <div className="gambling-box">
+                          {!isModalopen && <RouletteSpinner />}
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </HoverAudio>
+
 
                 {/* Row 3: Charts for Bitcoin Interest & Investments */}
                 <div className="row">
