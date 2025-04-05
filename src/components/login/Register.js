@@ -1,6 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './register.css'
-import Spinner from './Spinner.js';
 
 const Register = () => {
     return (
@@ -41,7 +40,7 @@ const Register = () => {
 
                     {/* Right Box - Gambling Earnings */}
                     <div className="gambling-box">
-                        <Spinner />
+
                     </div>
                 </div>
             </body>
