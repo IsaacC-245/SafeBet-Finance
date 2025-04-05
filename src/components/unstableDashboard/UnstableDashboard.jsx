@@ -187,7 +187,9 @@ const UnstableDashboard = () => {
                             <div className="transaction-card">1234 ****</div>
                           </div>
                           <div className="transaction-right">
-                            <div className="transaction-status">Pending (as always)</div>
+                            <div className="transaction-status">
+                              Pending (as always)
+                            </div>
                             <div className="transaction-amount positive">
                               $3,000
                             </div>
@@ -254,10 +256,34 @@ const UnstableDashboard = () => {
                 {/* Row 3: Charts for Savings Interest & Stock Investments */}
                 <div className="row">
                   <div className="col-12">
-                    <div className="chart-container">
-                      <div className="chart-placeholder">
-                        <h3>Savings Interest & Stock Investments</h3>
-                        {/* Insert your charts components or rework the existing Debit/Credit chart code */}
+                    <div className="chart-container chart-cards">
+                      <div className="col-md-6">
+                        <div className="chart-card">
+                          <div className="card-header">
+                            <h3>Savings</h3>
+                          </div>
+                          <div className="card-body">
+                            <p>Account Over Time</p>
+                            <p>APY: 2.5%</p>
+                            <div className="chart-placeholder">
+                              {/* Insert Savings Chart Component Here */}
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                      {/* Stocks Card */}
+                      <div className="col-md-6">
+                        <div className="chart-card">
+                          <div className="card-header">
+                            <h3>Stock Portfolio</h3>
+                          </div>
+                          <div className="card-body">
+                            <p>Earnings/Losses: +$1,200 / -$300</p>
+                            <div className="chart-placeholder">
+                              {/* Insert Stocks Chart Component Here*/}
+                            </div>
+                          </div>
+                        </div>
                       </div>
                     </div>
                   </div>
