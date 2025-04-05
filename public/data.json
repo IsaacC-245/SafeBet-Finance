@@ -8,27 +8,19 @@
         "value": 2000
       },
       {
-        "name": "income",
-        "value": 2000
+        "name": "gamble return",
+        "value": 200
+      },
+      {
+        "name": "game loss",
+        "value": -100
       },
       {
         "name": "income",
         "value": 2000
       },
       {
-        "name": "income",
-        "value": 2000
-      },
-      {
-        "name": "income",
-        "value": 2000
-      },
-      {
-        "name": "income",
-        "value": 2000
-      },
-      {
-        "name": "income",
+        "name": "gamble return",
         "value": 2000
       }
     ]

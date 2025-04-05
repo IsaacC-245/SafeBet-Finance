@@ -27,7 +27,7 @@ const Dashboard = () => {
   const handleFlipResult = (didWin) => {
     setLastResult(false);
     if (didWin) {
-      updateBalance("Deposit", depositAmount*2, user);
+      updateBalance("Deposit Doubled!", depositAmount*2, user);
     } else {
     }
   };
