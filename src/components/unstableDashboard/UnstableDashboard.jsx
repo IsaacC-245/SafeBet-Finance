@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
@@ -26,8 +26,10 @@ import {
   WalletMinimal,
   Vault,
 } from "lucide-react";
+import {DataContext} from "../../DataProvider";
 
 const UnstableDashboard = () => {
+  const { logout } = useContext(DataContext)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const toggleSidebar = () => {
@@ -116,7 +118,7 @@ const UnstableDashboard = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link">
+              <Link to="/login" className="nav-link" onSubmit={(e) => logout(e)}>
                 <LogOut size={20} />
                 <span className="nav-text">Logout</span>
               </Link>

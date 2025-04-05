@@ -7,7 +7,6 @@ import { Navigate } from 'react-router-dom'
 const Login = () => {
 
     const { user, login } = useContext(DataContext)
-
     const [username, setUsername] = useState('')
 
     if (user) {
