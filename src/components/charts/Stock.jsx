@@ -11,8 +11,8 @@ const Stocks = () => {
             };
 
             const chart = createChart(chartContainerRef.current, {
-                layout: { textColor: 'black', background: { type: 'solid', color: 'white' } }, width: 300,
-                height: 300,});
+                layout: { textColor: 'black', background: { type: 'solid', color: 'white' } }, width: 270,
+                height: 250,});
             chart.timeScale().fitContent();
 
             const newSeries = chart.addSeries(CandlestickSeries,

@@ -3,6 +3,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
 import RouletteSpinner from "../spinner/rouletteSpinner";
+import Stock from "../charts/Stock";
+import Savings from "../charts/Savings";
 
 import dogeUser from "../../assets/imgs/doge-user.jpg";
 
@@ -258,30 +260,31 @@ const UnstableDashboard = () => {
                 <div className="row">
                   <div className="col-12">
                     <div className="chart-container chart-cards">
-                      <div className="col-md-6">
-                        <div className="chart-card">
-                          <div className="card-header">
-                            <h3>Savings</h3>
-                          </div>
-                          <div className="card-body">
-                            <p>Account Over Time</p>
-                            <p>APY: 2.5%</p>
-                            <div className="chart-placeholder">
-                              {/* Insert Savings Chart Component Here */}
+                      <div className="row">
+                        <div className="col-md-6">
+                          <div className="chart-card">
+                            <div className="card-header">
+                              <h3>Savings</h3>
+                            </div>
+                            <div className="card-body">
+                              <p>Account Over Time</p>
+                              <div className="chart-placeholder">
+                                <Savings />
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                      {/* Stocks Card */}
-                      <div className="col-md-6">
-                        <div className="chart-card">
-                          <div className="card-header">
-                            <h3>Stock Portfolio</h3>
-                          </div>
-                          <div className="card-body">
-                            <p>Earnings/Losses: +$1,200 / -$300</p>
-                            <div className="chart-placeholder">
-                              {/* Insert Stocks Chart Component Here*/}
+                        {/* Stocks Card */}
+                        <div className="col-md-6">
+                          <div className="chart-card">
+                            <div className="card-header">
+                              <h3>Stock Portfolio</h3>
+                            </div>
+                            <div className="card-body">
+                              <p>Earnings/Losses: +$1,200 / -$300</p>
+                              <div className="chart-placeholder">
+                                <Stock />
+                              </div>
                             </div>
                           </div>
                         </div>
