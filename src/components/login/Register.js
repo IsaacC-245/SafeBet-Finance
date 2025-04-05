@@ -9,6 +9,7 @@ const Register = () => {
     const { user, register } = useContext(DataContext)
 
     const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
 
     if (user) {
         return <Navigate to='/dashboard1'/>
@@ -18,14 +19,14 @@ const Register = () => {
                 <div>
                     <div className="dashboard-container">
                         {/* Left Box - Log In */}
-                        <form className="login-box" onSubmit={(e) => register(username, e)}>
+                        <form className="login-box" onSubmit={(e) => register(username, email, e)}>
                             <h1 className="h3 mb-3 font-weight-normal" >Register</h1>
                             <label htmlFor="inputUsername" className="sr-only">Username</label>
                             <input type="username" id="inputUsername" className="form-control" placeholder="" required=""
                                    autoFocus="" onChange={e => setUsername(e.target.value)}/>
                             <label htmlFor="inputEmail" className="sr-only">Email address</label>
                             <input type="email" id="inputEmail" className="form-control" placeholder="" required=""
-                                   autoFocus=""/>
+                                   onChange={e => setEmail(e.target.value)}/>
                             <label htmlFor="inputPassword" className="sr-only">Password</label>
                             <input type="password" id="inputPassword" className="form-control" placeholder="" required=""/>
                             <button className="btn btn-lg btn-primary btn-block" type="submit">Create account</button>
