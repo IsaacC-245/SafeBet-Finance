@@ -27,11 +27,17 @@ import {
   Club,
   Bitcoin,
   WalletMinimal,
-  Vault,
+  Vault, SpeakerIcon,
 } from "lucide-react";
+import HoverAudio from "../HoverAudio";
 
 const UnstableDashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [audioEnabled, setAudioEnabled] = useState(false);
+
+  const enableAudio = () => {
+    setAudioEnabled(true);
+  };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -60,10 +66,11 @@ const UnstableDashboard = () => {
           <button className="icon-button">
             <Settings size={20} />
           </button>
-          <button className="icon-button notification">
-            <Bell size={20} />
-            <span className="notification-badge"></span>
-          </button>
+          {!audioEnabled && (
+              <button onClick={enableAudio} className="icon-button notification">
+                <SpeakerIcon size={20} />
+              </button>
+          )}
           <div className="user-avatar">
             <img src={dogeUser} alt="User" />
           </div>
@@ -92,30 +99,6 @@ const UnstableDashboard = () => {
               <Link to="/accounts" className="nav-link">
                 <User size={20} />
                 <span className="nav-text">Accounts</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/investments" className="nav-link">
-                <TrendingDown size={20} />
-                <span className="nav-text">"Investments"</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/rewards" className="nav-link">
-                <Gift size={20} />
-                <span className="nav-text">Rewards</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/benefits" className="nav-link">
-                <Award size={20} />
-                <span className="nav-text">SafeBet Benefits</span>
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link to="/settings" className="nav-link">
-                <Settings size={20} />
-                <span className="nav-text">Settings</span>
               </Link>
             </li>
             <li className="nav-item">
@@ -298,26 +281,30 @@ const UnstableDashboard = () => {
               {/* Right Column */}
               <div className="col-md-6">
                 {/* Row 1: Potential Winnings */}
-                <div className="row mb-3">
-                  <div className="col-12">
-                    <div className="winnings-section">
-                      <h3>Potential Winnings</h3>
-                      {/* Display potential winnings based on recent wins */}
+                <HoverAudio src="/winning.mp3" enabled={audioEnabled}>
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <div className="winnings-section">
+                        <h3>Potential Winnings</h3>
+                        {/* Display potential winnings based on recent wins */}
+                      </div>
                     </div>
                   </div>
-                </div>
+                </HoverAudio>
 
                 {/* Row 2: Spinning Roulette Wheel */}
-                <div className="row mb-3">
-                  <div className="col-12">
-                    <div className="roulette-section">
-                      <h3>Place Your Bet</h3>
-                      <div className="gambling-box">
-                        <RouletteSpinner />
-                    </div>
+                <HoverAudio src="/gambling.mp3" enabled={audioEnabled}>
+                  <div className="row mb-3">
+                    <div className="col-12">
+                      <div className="roulette-section">
+                        <h3>Place Your Bet</h3>
+                        <div className="gambling-box">
+                          <RouletteSpinner />
+                        </div>
+                      </div>
                     </div>
                   </div>
-                </div>
+                </HoverAudio>
 
                 {/* Row 3: Charts for Bitcoin Interest & Investments */}
                 <div className="row">

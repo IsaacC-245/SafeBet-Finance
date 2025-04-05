@@ -29,7 +29,7 @@ const Login = () => {
                         <input type="password" id="inputPassword" className="form-control" required={true} />
                         <button className="btn btn-lg btn-primary btn-block" type="submit">Log in</button>
                     </form>
-                    <button className="btn btn-lg btn-primary btn-block" onClick={handleRegister}>Register</button>
+                    <button className="btn btn-lg btn-primary btn-block" onClick={e => handleRegister()}>Register</button>
                 </div>
             </div>
         );
