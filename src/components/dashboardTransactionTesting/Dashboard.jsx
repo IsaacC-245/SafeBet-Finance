@@ -3,6 +3,8 @@ import { DataContext } from "../../DataProvider"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './dashboard.css';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal';
+import RouletteSpinner from "../spinner/rouletteSpinner";
 
 import dogeUser from '../../assets/imgs/doge-user.jpg';
 
@@ -15,11 +17,20 @@ import {
 } from 'lucide-react';
 
 const Dashboard = () => {
-  const { user } = useContext(DataContext)
+  const { user, updateBalance } = useContext(DataContext)
+  const [isModalopen, setModalOpen] = useState(false);
+  const [depositAmount, setDepositAmount] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
+  };
+
+  const handleDeposit = () => {
+    if(depositAmount > 0){
+      setModalOpen(true)
+      updateBalance("Deposit", depositAmount, user);
+    }
   };
 
   return (
@@ -116,22 +127,28 @@ const Dashboard = () => {
             </div>
 
             <div className="finance-card">
-              <div className="finance-icon light-blue">
-                <TrendingUp size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">Income</div>
-                <div className="finance-amount">$5,600</div>
-              </div>
-            </div>
-
-            <div className="finance-card">
               <div className="finance-icon blue">
                 <Receipt size={22} />
               </div>
               <div className="finance-details">
-                <div className="finance-label">Expense</div>
-                <div className="finance-amount">$3,460</div>
+                <div className="finance-label">Deposit</div>
+                <div className="finance-amount-input">
+                  <input
+                      type="number"
+                      defaultValue={0}
+                      className="amount-input"
+                      onChange={(e) => setDepositAmount(e.target.value)}
+                  />
+                  <button className="update-button" onClick={handleDeposit}>Deposit</button>
+                </div>
+
+                {isModalopen && (
+                    <Modal onClose={() => setModalOpen(false)}>
+                      <h2>DOUBLE NOW</h2>
+                      <p>Deposit {depositAmount*2} is a click away~</p>
+                      <RouletteSpinner />
+                    </Modal>
+                )}
               </div>
             </div>
 
@@ -153,7 +170,7 @@ const Dashboard = () => {
               <div className="section-header">
                 <h3>Last Transaction</h3>
               </div>
-              <div className="transaction-list">
+              <div className="transaction-list max-h-[60vh] overflow-y-auto">
                 {/* LOADING TRANSACTION DATA */}
                 {user.history.map((transaction, index) => (
                     <div className="transaction-item" key={index}>

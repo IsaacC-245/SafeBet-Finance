@@ -281,6 +281,30 @@
 	font-size: 1.4rem;
 	font-weight: 600;
       }
+
+.finance-amount-input {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+}
+
+.amount-input {
+	width: 12ch; /* roughly fits 7 characters */
+	padding: 4px 6px;
+	font-size: 14px;
+	border: 1px solid #ccc;
+	border-radius: 4px;
+}
+
+.update-button {
+	padding: 4px 8px;
+	font-size: 14px;
+	background-color:#324ac2;
+	color: white;
+	border: none;
+	border-radius: 4px;
+	cursor: pointer;
+}
       
       /* Transactions and Card row */
       .transactions-cards-row {
@@ -338,6 +362,7 @@
 	padding: 1rem 0;
 	border-bottom: 1px solid var(--border-color);
       }
+
       
       .transaction-item:last-child {
 	border-bottom: none;
