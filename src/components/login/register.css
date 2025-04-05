@@ -79,7 +79,7 @@ body {
 }
 
 .login-box, .gambling-box {
-    background-color: #fdfaf6;
+    background-color: #ffffff;
     color: #000;
     border-radius: 1rem;
     padding: 2rem;
@@ -107,7 +107,7 @@ body {
 
 .gambling-box {
     text-align: center;
-    background-color: #000;
+    background-color: #303030;
     color: #fff;
 }
 

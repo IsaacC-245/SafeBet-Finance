@@ -5,7 +5,18 @@
     "history": [
       {
         "name": "income",
-        "value": 2000
+        "value": 2000,
+        "date": "10/23/1968"
+      },
+      {
+        "name": "transaction",
+        "value": 3000,
+        "date": "06/03/1974"
+      },
+      {
+        "name": "transaction",
+        "value": -69,
+        "date": "02/02/2002"
       }
     ]
   }

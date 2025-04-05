@@ -36,9 +36,14 @@ const DataProvider = ({ children }) => {
     }
 
     const register = (newPerson) => {
-        setData([...data, newPerson]);
-        localStorage.setitem(data)
-        setUser(newPerson)
+        let userData = {
+            username: newPerson,
+            balance: 0,
+            history: []
+        }
+        let newData = [...data, userData]
+        localStorage.setItem("data", JSON.stringify(newData))
+        setUser(JSON.stringify(userData))
     };
 
     const updateBalance = (transactionName, value, currUser) => {
