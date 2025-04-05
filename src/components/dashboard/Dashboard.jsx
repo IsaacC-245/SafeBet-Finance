@@ -9,8 +9,7 @@ import {
   Home, Settings, Search, 
   Bell, Gift, Receipt, TrendingUp, 
   User, Award, ShoppingCart, Phone,
-  TrendingDown,
-  Heading
+  TrendingDown, LogOut
 } from 'lucide-react';
 
 const Dashboard = () => {
@@ -95,6 +94,12 @@ const Dashboard = () => {
               <Link to="/settings" className="nav-link">
                 <Settings size={20} />
                 <span className="nav-text">Settings</span>
+              </Link>
+            </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                <LogOut size={20} />
+                <span className="nav-text">Logout</span>
               </Link>
             </li>
           </ul>
