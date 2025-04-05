@@ -26,9 +26,10 @@ const DataProvider = ({ children }) => {
         fetchData()
     }
 
-    const register = (newPerson) => {
+    const register = (newPerson, email) => {
         let newData = {
             "username": newPerson,
+            "email": email,
             "balance": 25,
             "history": []
         }

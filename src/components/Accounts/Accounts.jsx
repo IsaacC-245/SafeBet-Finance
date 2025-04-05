@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { DataContext } from "../../DataProvider"
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './transactions.css';
+import './Accounts.css';
 import { Link } from 'react-router-dom';
 
 import dogeUser from '../../assets/imgs/doge-user.jpg';
@@ -13,8 +13,8 @@ import {
     TrendingDown, LogOut
 } from 'lucide-react';
 
-const Transactions = () => {
-    const { user, updateBalance, logout } = useContext(DataContext)
+const Accounts = () => {
+    const { user, logout } = useContext(DataContext)
     const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
 
     const toggleSidebar = () => {
@@ -30,7 +30,7 @@ const Transactions = () => {
                         <div className="logo-circle red"></div>
                         <span className="logo-text">SafeBet Finance</span>
                     </div>
-                    <h2 className="page-title">Transactions</h2>
+                    <h2 className="page-title">Accounts</h2>
                 </div>
                 <div className="header-right">
                     <div className="search-container">
@@ -112,33 +112,23 @@ const Transactions = () => {
                     {/* Last Transaction */}
                     <div className="transactions-section">
                         <div className="section-header">
-                            <h3>Total Transaction</h3>
+                            <h3>Account Information</h3>
                         </div>
-                        <div className="transaction-list max-h-[60vh] overflow-y-auto">
-                            {/* LOADING TRANSACTION DATA */}
-                            {user.history.map((transaction, index) => (
-                                <div className="transaction-item" key={index}>
-                                    <div className="transaction-left">
-                                        <div className="transaction-icon">
-                                            <ShoppingCart size={18} />
-                                        </div>
-                                        <div className="transaction-details">
-                                            <div className="transaction-title">{transaction.name}</div>
-                                            <div className="transaction-date">25 Jan 2021</div>
-                                        </div>
-                                    </div>
-                                    <div className="transaction-middle">
-                                        <div className="transaction-type">Shopping</div>
-                                        <div className="transaction-card">1234 ****</div>
-                                    </div>
-                                    <div className="transaction-right">
-                                        <div className="transaction-status">Pending</div>
-                                        <div className={`transaction-amount ${transaction.value < 0 ? 'negative' : 'positive'}`}>
-                                            {transaction.value < 0 ? '-' : '+'}${Math.abs(transaction.value)}
-                                        </div>
-                                    </div>
+                        <div className="transaction-item">
+                            <div className="transaction-left">
+                                <div className="transaction-details">
+                                    <div className="transaction-title">Account Name</div>
+                                    <div className="transaction-date">{user.username}</div>
                                 </div>
-                            ))}
+                            </div>
+                        </div>
+                        <div className="transaction-item">
+                            <div className="transaction-left">
+                                <div className="transaction-details">
+                                    <div className="transaction-title">Email</div>
+                                    <div className="transaction-date">{user.email}</div>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -148,4 +138,4 @@ const Transactions = () => {
     );
 };
 
-export default Transactions;
+export default Accounts;

@@ -268,7 +268,8 @@
 	color: #ffffff;
       }
       
-      .finance-details {
+      .finance-details {;
+		  align-content: end;
 	flex-grow: 1;
       }
       
