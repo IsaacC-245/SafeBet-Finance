@@ -3,7 +3,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
 import RouletteSpinner from "../spinner/rouletteSpinner";
-import Stock from "../charts/Stock";
+import Stock from "../charts/Stocks";
 import Savings from "../charts/Savings";
 
 import dogeUser from "../../assets/imgs/doge-user.jpg";
