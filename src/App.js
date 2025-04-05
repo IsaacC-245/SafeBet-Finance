@@ -10,6 +10,7 @@ import ModalDemo from "./components/ModalDemo/ModalDemo";
 import SpinnerModal from "./components/spinner/spinnerModal";
 import Transactions from "./components/Transactions/transactions";
 import UnstableDashboard from "./components/unstableDashboard/UnstableDashboard";
+import Accounts from "./components/Accounts/Accounts";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
           <Route path="/login" element={<Login />} />
           <Route path="/dashboard" element={<UnstableDashboard />} />
           <Route path="/transactions" element={<Transactions />} />
+          <Route path="/accounts" element={<Accounts />} />
 
           {/* Testing Routes*/}
           <Route path="/SplitTesting" element={<SplitPage />} />

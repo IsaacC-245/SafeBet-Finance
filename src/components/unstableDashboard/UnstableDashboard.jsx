@@ -28,10 +28,37 @@ import {
   Vault,
 } from "lucide-react";
 import {DataContext} from "../../DataProvider";
+import Modal from "../Modal";
+import CoinFlipGame from "../coinflip/CoinFlipGame";
 
 const UnstableDashboard = () => {
   const { logout } = useContext(DataContext)
+  const { user, updateBalance } = useContext(DataContext)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [isModalopen, setModalOpen] = useState(false);
+  const [depositAmount, setDepositAmount] = useState(0);
+  const [lastResult, setLastResult] = useState(null);
+
+  const handleFlipResult = (didWin) => {
+    setLastResult(false);
+    if (didWin) {
+      updateBalance("Deposit Doubled!", depositAmount*2, user);
+    } else {
+    }
+  };
+
+  const handleDepositAttempt = () => {
+    setLastResult(null)
+    if(depositAmount > 0){
+      setModalOpen(true)
+    }
+  };
+
+  const handleDeposit = () => {
+    if(lastResult==null){
+      updateBalance("Deposit", depositAmount, user);
+    }
+  };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -143,7 +170,7 @@ const UnstableDashboard = () => {
                         </div>
                         <div className="finance-details">
                           <div className="finance-label">Checking</div>
-                          <div className="finance-amount">$4,816</div>
+                          <div className="finance-amount">${user.balance}</div>
                         </div>
                       </div>
                       <div className="finance-card">
@@ -165,9 +192,29 @@ const UnstableDashboard = () => {
                     <div className="transactions-section">
                       <div className="section-header">
                         <h3>Recent Earnings!!</h3>
-                        <button className="btn btn-primary">
-                          Make a Deposit
-                        </button>
+                        <div className="finance-details">
+                          <div className="finance-label">Deposit</div>
+                          <div className="finance-amount-input">
+                            <input
+                                type="number"
+                                defaultValue={0}
+                                className="amount-input"
+                                onChange={(e) => setDepositAmount(e.target.value)}
+                            />
+                            <button className="update-button" onClick={handleDepositAttempt}>Deposit</button>
+                          </div>
+
+                          {isModalopen && (
+                              <Modal onClose={() => {
+                                setModalOpen(false);
+                                handleDeposit(); // Replace this with whatever function you want to run
+                              }}>
+                                <h2>DOUBLE NOW</h2>
+                                <p>With just a click deposit {depositAmount*2}!</p>
+                                <CoinFlipGame onResult={handleFlipResult} />
+                              </Modal>
+                          )}
+                        </div>
                       </div>
                       <div className="transaction-list">
                         <div className="transaction-item">
@@ -312,8 +359,8 @@ const UnstableDashboard = () => {
                     <div className="roulette-section">
                       <h3>Place Your Bet</h3>
                       <div className="gambling-box">
-                        <RouletteSpinner />
-                    </div>
+                        {!isModalopen && <RouletteSpinner />}
+                      </div>
                     </div>
                   </div>
                 </div>
