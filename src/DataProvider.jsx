@@ -36,6 +36,11 @@ const DataProvider = ({ children }) => {
         setUser(newData)
     };
 
+    const logout = () => {
+        localStorage.removeItem("user")
+        setUser(null)
+    }
+
     const updateBalance = (transactionName, value) => {
         let updatedUser = user
         updatedUser.history.push({"name": transactionName, "value": value})
@@ -45,7 +50,7 @@ const DataProvider = ({ children }) => {
     }
 
     return (
-        <DataContext.Provider value={{ user, login, register, updateBalance }}>
+        <DataContext.Provider value={{ user, login, logout, register, updateBalance }}>
             { children }
         </DataContext.Provider>
     )
