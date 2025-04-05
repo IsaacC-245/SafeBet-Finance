@@ -29,7 +29,7 @@ const DataProvider = ({ children }) => {
     const register = (newPerson) => {
         let newData = {
             "username": newPerson,
-            "balance": 0,
+            "balance": 25,
             "history": []
         }
         localStorage.setItem("user", JSON.stringify(newData))
