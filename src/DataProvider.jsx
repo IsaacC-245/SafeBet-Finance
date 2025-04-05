@@ -1,58 +1,51 @@
-import { createContext, useState, useEffect } from "react";
+import {createContext, useState} from "react";
 
 const DataContext = createContext(null)
 
 const DataProvider = ({ children }) => {
-    const [data, setData] = useState(JSON.parse(localStorage.getItem("data")))
-    const [user, setUser] = useState('')
+    const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
 
-    useEffect(() => {
+    const login = (username) => {
         const fetchData = async () => {
             try {
                 const response = await fetch('/data.json');
-                if (!response.ok) {
-                    throw new Error('Network response was not ok');
-                }
+                let data = await response.json()
 
-                const result = await response.json();
-                localStorage.setItem("data", JSON.stringify(result))
-                setData(result);
+                for (let i = 0; i < data.length; i++) {
+                    if (username === data.at(i).username) {
+                        localStorage.setItem("user", JSON.stringify(data.at(i)))
+                        setUser(data.at(i))
+                        break
+                    }
+                }
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
         }
 
         fetchData()
-    }, []);
-
-    const login = (username) => {
-        for (let i = 0; i < data.length; i++) {
-            if (username === data.at(i).username) {
-                setUser(data.at(i))
-                return true
-            }
-        }
-        return false
     }
 
     const register = (newPerson) => {
-        setData([...data, newPerson]);
-        localStorage.setitem(data)
-        setUser(newPerson)
+        let newData = {
+            "username": newPerson,
+            "balance": 0,
+            "history": []
+        }
+        localStorage.setItem("user", JSON.stringify(newData))
+        setUser(newData)
     };
 
-    const updateBalance = (transactionName, value, currUser) => {
-        let newBalance = currUser.balance + value
-        let updatedHistory = currUser.history.push({"name": transactionName, "value": value})
-        const updatedData = data.map(person =>
-            person.name === currUser.name ? { ...person, balance: newBalance, history: updatedHistory } : person
-        );
-        setData(updatedData)
-        setUser(currUser)
+    const updateBalance = (transactionName, value) => {
+        let updatedUser = user
+        updatedUser.history.push({"name": transactionName, "value": value})
+        updatedUser.balance += Number(value)
+        localStorage.setItem("user", JSON.stringify(updatedUser))
+        setUser(updatedUser)
     }
 
     return (
-        <DataContext.Provider value={{ data, user, login, register, updateBalance }}>
+        <DataContext.Provider value={{ user, login, register, updateBalance }}>
             { children }
         </DataContext.Provider>
     )
