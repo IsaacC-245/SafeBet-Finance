@@ -28,9 +28,7 @@ body {
     border-radius: 20px;
     text-align: left;
 }
-.form-signin .checkbox {
-    font-weight: 400;
-}
+
 .form-signin .form-control {
     position: relative;
     box-sizing: border-box;
