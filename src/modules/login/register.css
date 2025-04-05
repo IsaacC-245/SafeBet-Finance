@@ -63,6 +63,75 @@ body {
 .btn-primary {
     background-color: #683024;
     border-color: #683024;
-    width: 200px;
+    width: 100%;
+    margin-bottom: 10px;
+    border-radius: 5px;
     font-size:16px;
+}
+
+.dashboard-container {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+    font-family: sans-serif;
+    /*background-color: #000;*/
+    /*min-height: 100vh;*/
+    color: #fff;
+}
+
+.login-box, .gambling-box {
+    background-color: #fdfaf6;
+    color: #000;
+    border-radius: 1rem;
+    padding: 2rem;
+    width: 400px;
+}
+
+.login-box input {
+    display: block;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding: 0.5rem;
+    border-radius: 0.4rem;
+    border: 1px solid #ccc;
+}
+
+.account-summary {
+    margin-top: 2rem;
+}
+
+.account-summary div {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.gambling-box {
+    text-align: center;
+    background-color: #000;
+    color: #fff;
+}
+
+.wheel {
+    width: 120px;
+    height: 120px;
+    background: conic-gradient(#683024 0deg 45deg, white 45deg 90deg, #683024 90deg 135deg, white 135deg 180deg, #683024 180deg 225deg, white 225deg 270deg, #683024 270deg 315deg, white 315deg 360deg);
+    border-radius: 50%;
+    margin: 1rem auto;
+}
+
+.spin-btn {
+    background-color: #333;
+    color: #fff;
+    padding: 0.6rem 1.5rem;
+    border: none;
+    border-radius: 0.3rem;
+    margin-bottom: 1rem;
+}
+
+.crypto-balance {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 2rem;
 }
