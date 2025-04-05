@@ -1,16 +1,30 @@
-import React, { useState } from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import './unstableDashboard.css';
-import { Link } from 'react-router-dom';
+import React, { useState } from "react";
+import "bootstrap/dist/css/bootstrap.min.css";
+import "./unstableDashboard.css";
+import { Link } from "react-router-dom";
 
-import dogeUser from '../../assets/imgs/doge-user.jpg';
+import dogeUser from "../../assets/imgs/doge-user.jpg";
 
-import { 
-  Home, Settings, Search, 
-  Bell, Gift, Receipt, TrendingUp, 
-  User, Award, ShoppingCart, Phone,
-  TrendingDown
-} from 'lucide-react';
+import {
+  Home,
+  Settings,
+  Search,
+  Bell,
+  Gift,
+  Receipt,
+  TrendingUp,
+  User,
+  Award,
+  ShoppingCart,
+  Phone,
+  TrendingDown,
+  LogOut,
+  Landmark,
+  Club,
+  Bitcoin,
+  WalletMinimal,
+  Vault,
+} from "lucide-react";
 
 const UnstableDashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
@@ -28,12 +42,16 @@ const UnstableDashboard = () => {
             <div className="logo-circle red"></div>
             <span className="logo-text">SafeBet Finance</span>
           </div>
-          <h2 className="page-title">Accounts</h2>
+          <h2 className="page-title">DashBoard</h2>
         </div>
         <div className="header-right">
           <div className="search-container">
             <Search className="search-icon" size={18} />
-            <input type="text" placeholder="Search for something" className="search-input" />
+            <input
+              type="text"
+              placeholder="Search for something"
+              className="search-input"
+            />
           </div>
           <button className="icon-button">
             <Settings size={20} />
@@ -49,7 +67,7 @@ const UnstableDashboard = () => {
       </header>
 
       <div className="main-container">
-        <nav className={`sidebar ${sidebarCollapsed ? 'collapsed' : ''}`}>
+        <nav className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
           <div className="sidebar-toggle" onClick={toggleSidebar}>
             {sidebarCollapsed ? <span>›</span> : <span>‹</span>}
           </div>
@@ -96,260 +114,188 @@ const UnstableDashboard = () => {
                 <span className="nav-text">Settings</span>
               </Link>
             </li>
+            <li className="nav-item">
+              <Link to="/login" className="nav-link">
+                <LogOut size={20} />
+                <span className="nav-text">Logout</span>
+              </Link>
+            </li>
           </ul>
         </nav>
 
-        <main className={`main-content ${sidebarCollapsed ? 'expanded' : ''}`}>
-          {/* Financial Overview Cards */}
-          <div className="financial-overview">
-            <div className="finance-card">
-              <div className="finance-icon blue">
-                <ShoppingCart size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">My Balance</div>
-                <div className="finance-amount">$12,750</div>
-              </div>
-            </div>
-
-            <div className="finance-card">
-              <div className="finance-icon light-blue">
-                <TrendingUp size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">Income</div>
-                <div className="finance-amount">$5,600</div>
-              </div>
-            </div>
-
-            <div className="finance-card">
-              <div className="finance-icon blue">
-                <Receipt size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">Expense</div>
-                <div className="finance-amount">$3,460</div>
-              </div>
-            </div>
-
-            <div className="finance-card">
-              <div className="finance-icon light-blue">
-                <ShoppingCart size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">Total Saving</div>
-                <div className="finance-amount">$7,920</div>
-              </div>
-            </div>
-          </div>
-
-          {/* Transactions and Cards Row */}
-          <div className="transactions-cards-row">
-            {/* Last Transaction */}
-            <div className="transactions-section">
-              <div className="section-header">
-                <h3>Last Transaction</h3>
-              </div>
-              <div className="transaction-list">
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <ShoppingCart size={18} />
-                    </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Spotify Subscription</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Shopping</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Pending</div>
-                    <div className="transaction-amount negative">-$150</div>
-                  </div>
-                </div>
-
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <Phone size={18} />
-                    </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Mobile Service</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Service</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Completed</div>
-                    <div className="transaction-amount negative">-$340</div>
-                  </div>
-                </div>
-
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <User size={18} />
-                    </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Emily Wilson</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Transfer</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Completed</div>
-                    <div className="transaction-amount positive">+$780</div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* My Card */}
-            <div className="my-card-section">
-              <div className="section-header">
-                <h3>My Card</h3>
-                <button className="see-all-btn">See All</button>
-              </div>
-              <div className="credit-card">
-                <div className="card-top">
-                  <div className="card-balance">
-                    <div className="balance-label">Balance</div>
-                    <div className="balance-amount">$5,756</div>
-                  </div>
-                  <div className="card-chip">
-                    <div className="chip-icon"></div>
-                  </div>
-                </div>
-                <div className="card-middle">
-                  <div className="card-holder">
-                    <div className="holder-label">CARD HOLDER</div>
-                    <div className="holder-name">Eddy Cusuma</div>
-                  </div>
-                  <div className="expiry-date">
-                    <div className="expiry-label">VALID THRU</div>
-                    <div className="expiry-value">12/22</div>
-                  </div>
-                </div>
-                <div className="card-number">
-                  3778 **** **** 1234
-                </div>
-                <div className="card-network">
-                  <div className="mastercard-icon">
-                    <div className="circle red"></div>
-                    <div className="circle yellow"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Debit & Credit and Invoices Row */}
-          <div className="debit-credit-invoices-row">
-            {/* Debit & Credit Overview */}
-            <div className="debit-credit-section">
-              <div className="section-header">
-                <h3>Debit & Credit Overview</h3>
-              </div>
-              <div className="debit-credit-info">
-                <div className="debit-credit-summary">
-                  <span className="debit-amount">$7,560</span>
-                  <span> Debited & </span>
-                  <span className="credit-amount">$5,420</span>
-                  <span> Credited in this Week</span>
-                </div>
-                <div className="chart-legend">
-                  <div className="legend-item">
-                    <div className="legend-color debit"></div>
-                    <span>Debit</span>
-                  </div>
-                  <div className="legend-item">
-                    <div className="legend-color credit"></div>
-                    <span>Credit</span>
-                  </div>
-                </div>
-              </div>
-              <div className="chart-container">
-                <div className="chart-placeholder">
-                  <div className="chart-columns">
-                    {['Sat', 'Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri'].map((day, i) => (
-                      <div className="chart-column" key={i}>
-                        <div className="chart-bars">
-                          <div className="debit-bar" style={{ height: `${30 + Math.random() * 70}px` }}></div>
-                          <div className="credit-bar" style={{ height: `${30 + Math.random() * 70}px` }}></div>
+        <main className={`main-content ${sidebarCollapsed ? "expanded" : ""}`}>
+          <div className="container-fluid">
+            <div className="row">
+              {/* Left Column */}
+              <div className="col-md-6">
+                {/* Row 1: Finance Cards for Checking & Savings */}
+                <div className="row mb-3">
+                  <div className="col-12">
+                    <div className="financial-overview">
+                      {/* Reworked finance cards for Checking and Savings */}
+                      <div className="finance-card">
+                        <div className="finance-icon blue">
+                          <WalletMinimal size={30} />
                         </div>
-                        <div className="day-label">{day}</div>
+                        <div className="finance-details">
+                          <div className="finance-label">Checking</div>
+                          <div className="finance-amount">$4,816</div>
+                        </div>
                       </div>
-                    ))}
+                      <div className="finance-card">
+                        <div className="finance-icon blue">
+                          <Vault size={30} />
+                        </div>
+                        <div className="finance-details">
+                          <div className="finance-label">Savings</div>
+                          <div className="finance-amount">$35,183</div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Row 2: Recent Transactions with Deposit Button */}
+                <div className="row mb-3">
+                  <div className="col-12">
+                    <div className="transactions-section">
+                      <div className="section-header">
+                        <h3>Recent Earnings!!</h3>
+                        <button className="btn btn-primary">
+                          Make a Deposit
+                        </button>
+                      </div>
+                      <div className="transaction-list">
+                        <div className="transaction-item">
+                          <div className="transaction-left">
+                            <div className="transaction-icon">
+                              <Landmark size={18} />
+                            </div>
+                            <div className="transaction-details">
+                              <div className="transaction-title">
+                                Tax Returns
+                              </div>
+                              <div className="transaction-date">
+                                2 April 2025
+                              </div>
+                            </div>
+                          </div>
+                          <div className="transaction-middle">
+                            <div className="transaction-type">
+                              Gambling Funds from IRS?
+                            </div>
+                            <div className="transaction-card">1234 ****</div>
+                          </div>
+                          <div className="transaction-right">
+                            <div className="transaction-status">Pending (as always)</div>
+                            <div className="transaction-amount positive">
+                              $3,000
+                            </div>
+                          </div>
+                        </div>
+                        <div className="transaction-item">
+                          <div className="transaction-left">
+                            <div className="transaction-icon">
+                              <Bitcoin size={18} />
+                            </div>
+                            <div className="transaction-details">
+                              <div className="transaction-title">
+                                DOGE Team Intern
+                              </div>
+                              <div className="transaction-date">
+                                1 April 2025
+                              </div>
+                            </div>
+                          </div>
+                          <div className="transaction-middle">
+                            <div className="transaction-type">
+                              Straight from the US Treasury
+                            </div>
+                            <div className="transaction-card">8933 ****</div>
+                          </div>
+                          <div className="transaction-right">
+                            <div className="transaction-status">Classified</div>
+                            <div className="transaction-amount positive">
+                              $420.69
+                            </div>
+                          </div>
+                        </div>
+                        <div className="transaction-item">
+                          <div className="transaction-left">
+                            <div className="transaction-icon">
+                              <Club size={18} />
+                            </div>
+                            <div className="transaction-details">
+                              <div className="transaction-title">
+                                BlackJack Winnings
+                              </div>
+                              <div className="transaction-date">
+                                30 March 2025
+                              </div>
+                            </div>
+                          </div>
+                          <div className="transaction-middle">
+                            <div className="transaction-type">
+                              Imagine if you went all in on black tho? &#128064;
+                            </div>
+                            <div className="transaction-card">1738 ****</div>
+                          </div>
+                          <div className="transaction-right">
+                            <div className="transaction-status">Approved</div>
+                            <div className="transaction-amount positive">
+                              $2,500
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                {/* Row 3: Charts for Savings Interest & Stock Investments */}
+                <div className="row">
+                  <div className="col-12">
+                    <div className="chart-container">
+                      <div className="chart-placeholder">
+                        <h3>Savings Interest & Stock Investments</h3>
+                        {/* Insert your charts components or rework the existing Debit/Credit chart code */}
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
-            </div>
 
-            {/* Invoices Sent */}
-            <div className="invoices-section">
-              <div className="section-header">
-                <h3>Invoices Sent</h3>
-              </div>
-              <div className="invoice-list">
-                <div className="invoice-item">
-                  <div className="invoice-left">
-                    <div className="invoice-icon">
-                      <ShoppingCart size={18} />
-                    </div>
-                    <div className="invoice-details">
-                      <div className="invoice-title">Apple Store</div>
-                      <div className="invoice-date">5h ago</div>
+              {/* Right Column */}
+              <div className="col-md-6">
+                {/* Row 1: Potential Winnings */}
+                <div className="row mb-3">
+                  <div className="col-12">
+                    <div className="winnings-section">
+                      <h3>Potential Winnings</h3>
+                      {/* Display potential winnings based on recent wins */}
                     </div>
                   </div>
-                  <div className="invoice-amount">$450</div>
                 </div>
 
-                <div className="invoice-item">
-                  <div className="invoice-left">
-                    <div className="invoice-icon">
-                      <User size={18} />
-                    </div>
-                    <div className="invoice-details">
-                      <div className="invoice-title">Michael</div>
-                      <div className="invoice-date">2 days ago</div>
+                {/* Row 2: Spinning Roulette Wheel */}
+                <div className="row mb-3">
+                  <div className="col-12">
+                    <div className="roulette-section">
+                      <h3>Place Your Bet</h3>
+                      {/* Integrate your roulette wheel component here */}
                     </div>
                   </div>
-                  <div className="invoice-amount">$160</div>
                 </div>
 
-                <div className="invoice-item">
-                  <div className="invoice-left">
-                    <div className="invoice-icon">
-                      <Gift size={18} />
-                    </div>
-                    <div className="invoice-details">
-                      <div className="invoice-title">Playstation</div>
-                      <div className="invoice-date">5 days ago</div>
-                    </div>
-                  </div>
-                  <div className="invoice-amount">$1085</div>
-                </div>
-
-                <div className="invoice-item">
-                  <div className="invoice-left">
-                    <div className="invoice-icon">
-                      <User size={18} />
-                    </div>
-                    <div className="invoice-details">
-                      <div className="invoice-title">William</div>
-                      <div className="invoice-date">10 days ago</div>
+                {/* Row 3: Charts for Bitcoin Interest & Investments */}
+                <div className="row">
+                  <div className="col-12">
+                    <div className="chart-container">
+                      <div className="chart-placeholder">
+                        <h3>Bitcoin Interest & Investments</h3>
+                        {/* Insert charts for bitcoin account interest and bitcoin investments */}
+                      </div>
                     </div>
                   </div>
-                  <div className="invoice-amount">$90</div>
                 </div>
               </div>
             </div>
