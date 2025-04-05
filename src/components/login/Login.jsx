@@ -11,7 +11,7 @@ const Login = () => {
     const [username, setUsername] = useState('')
 
     if (user) {
-        return <Navigate to='/test'/>
+        return <Navigate to='/dashboard1'/>
     } else {
         return (
             <div className="text-center">

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { DataContext } from "../../DataProvider"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './dashboard.css';
 import { Link } from 'react-router-dom';
+import Modal from '../Modal';
+import RouletteSpinner from "../spinner/rouletteSpinner";
 
 import dogeUser from '../../assets/imgs/doge-user.jpg';
 
@@ -9,14 +12,41 @@ import {
   Home, Settings, Search, 
   Bell, Gift, Receipt, TrendingUp, 
   User, Award, ShoppingCart, Phone,
-  TrendingDown, LogOut
+  TrendingDown,
+  Heading
 } from 'lucide-react';
+import CoinFlipGame from "../coinflip/CoinFlipGame";
 
 const Dashboard = () => {
+  const { user, updateBalance } = useContext(DataContext)
+  const [isModalopen, setModalOpen] = useState(false);
+  const [depositAmount, setDepositAmount] = useState(0);
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [lastResult, setLastResult] = useState(null);
+
+  const handleFlipResult = (didWin) => {
+    setLastResult(false);
+    if (didWin) {
+      updateBalance("Deposit Doubled!", depositAmount*2, user);
+    } else {
+    }
+  };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
+  };
+
+  const handleDepositAttempt = () => {
+    setLastResult(null)
+    if(depositAmount > 0){
+      setModalOpen(true)
+    }
+  };
+
+  const handleDeposit = () => {
+    if(lastResult==null){
+      updateBalance("Deposit", depositAmount, user);
+    }
   };
 
   return (
@@ -96,12 +126,6 @@ const Dashboard = () => {
                 <span className="nav-text">Settings</span>
               </Link>
             </li>
-            <li className="nav-item">
-              <Link to="/login" className="nav-link">
-                <LogOut size={20} />
-                <span className="nav-text">Logout</span>
-              </Link>
-            </li>
           </ul>
         </nav>
 
@@ -114,17 +138,7 @@ const Dashboard = () => {
               </div>
               <div className="finance-details">
                 <div className="finance-label">My Balance</div>
-                <div className="finance-amount">$12,750</div>
-              </div>
-            </div>
-
-            <div className="finance-card">
-              <div className="finance-icon light-blue">
-                <TrendingUp size={22} />
-              </div>
-              <div className="finance-details">
-                <div className="finance-label">Income</div>
-                <div className="finance-amount">$5,600</div>
+                <div className="finance-amount">{user.balance}</div>
               </div>
             </div>
 
@@ -133,8 +147,27 @@ const Dashboard = () => {
                 <Receipt size={22} />
               </div>
               <div className="finance-details">
-                <div className="finance-label">Expense</div>
-                <div className="finance-amount">$3,460</div>
+                <div className="finance-label">Deposit</div>
+                <div className="finance-amount-input">
+                  <input
+                      type="number"
+                      defaultValue={0}
+                      className="amount-input"
+                      onChange={(e) => setDepositAmount(e.target.value)}
+                  />
+                  <button className="update-button" onClick={handleDepositAttempt}>Deposit</button>
+                </div>
+
+                {isModalopen && (
+                    <Modal onClose={() => {
+                      setModalOpen(false);
+                      handleDeposit(); // Replace this with whatever function you want to run
+                    }}>
+                      <h2>DOUBLE NOW</h2>
+                      <p>With just a click deposit {depositAmount*2}!</p>
+                      <CoinFlipGame onResult={handleFlipResult} />
+                    </Modal>
+                )}
               </div>
             </div>
 
@@ -156,66 +189,31 @@ const Dashboard = () => {
               <div className="section-header">
                 <h3>Last Transaction</h3>
               </div>
-              <div className="transaction-list">
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <ShoppingCart size={18} />
+              <div className="transaction-list max-h-[60vh] overflow-y-auto">
+                {/* LOADING TRANSACTION DATA */}
+                {user.history.map((transaction, index) => (
+                    <div className="transaction-item" key={index}>
+                      <div className="transaction-left">
+                        <div className="transaction-icon">
+                          <ShoppingCart size={18} />
+                        </div>
+                        <div className="transaction-details">
+                          <div className="transaction-title">{transaction.name}</div>
+                          <div className="transaction-date">25 Jan 2021</div>
+                        </div>
+                      </div>
+                      <div className="transaction-middle">
+                        <div className="transaction-type">Shopping</div>
+                        <div className="transaction-card">1234 ****</div>
+                      </div>
+                      <div className="transaction-right">
+                        <div className="transaction-status">Pending</div>
+                        <div className={`transaction-amount ${transaction.value < 0 ? 'negative' : 'positive'}`}>
+                          {transaction.value < 0 ? '-' : '+'}${Math.abs(transaction.value)}
+                        </div>
+                      </div>
                     </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Spotify Subscription</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Shopping</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Pending</div>
-                    <div className="transaction-amount negative">-$150</div>
-                  </div>
-                </div>
-
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <Phone size={18} />
-                    </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Mobile Service</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Service</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Completed</div>
-                    <div className="transaction-amount negative">-$340</div>
-                  </div>
-                </div>
-
-                <div className="transaction-item">
-                  <div className="transaction-left">
-                    <div className="transaction-icon">
-                      <User size={18} />
-                    </div>
-                    <div className="transaction-details">
-                      <div className="transaction-title">Emily Wilson</div>
-                      <div className="transaction-date">25 Jan 2021</div>
-                    </div>
-                  </div>
-                  <div className="transaction-middle">
-                    <div className="transaction-type">Transfer</div>
-                    <div className="transaction-card">1234 ****</div>
-                  </div>
-                  <div className="transaction-right">
-                    <div className="transaction-status">Completed</div>
-                    <div className="transaction-amount positive">+$780</div>
-                  </div>
-                </div>
+                ))}
               </div>
             </div>
 
