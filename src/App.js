@@ -6,6 +6,8 @@ import Register from './components/login/Register'
 import Dashboard from './components/dashboard/Dashboard'
 import SplitPage from './components/splitPage/SplitPage'
 import DataProvider from "./DataProvider";
+import Dashboard2 from "./components/dashboardTransactionTesting/Dashboard"
+import ModalDemo from "./components/ModalDemo/ModalDemo";
 
 
 function App() {
@@ -15,7 +17,9 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/dashboard2" element={<Dashboard2 />} />
                 <Route path="/SplitTesting" element={<SplitPage />} />
+                <Route path="/Demo" element={<ModalDemo/>}/>
                 <Route path="*" element={<NoPage />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
