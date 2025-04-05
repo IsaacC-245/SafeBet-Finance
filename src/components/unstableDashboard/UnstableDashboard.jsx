@@ -1,12 +1,9 @@
-import React, {useContext, useStat, useEffect} from "react";
+import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
 import RouletteSpinner from "../spinner/rouletteSpinner";
-import Stock from "../charts/Stocks";
-import Savings from "../charts/Savings";
-import Stocks from "../Stocks";
-import SlotCounter from "react-slot-counter";
+import Stocks from "../charts/Stocks";
 
 import dogeUser from "../../assets/imgs/doge-user.jpg";
 
@@ -17,8 +14,11 @@ import {
   Bell,
   Gift,
   Receipt,
+  TrendingUp,
   User,
   Award,
+  ShoppingCart,
+  Phone,
   TrendingDown,
   LogOut,
   Landmark,
@@ -26,60 +26,10 @@ import {
   Bitcoin,
   WalletMinimal,
   Vault,
-  Crown,
 } from "lucide-react";
-import {DataContext} from "../../DataProvider";
-import Modal from "../Modal";
-import CoinFlipGame from "../coinflip/CoinFlipGame";
-
-const PotentialEarningsCounter = () => {
-  const [earnings, setEarnings] = useState(4816);
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      // Generate a random earning value between 3000 and 8000 for demonstration
-      const newEarnings = Math.floor(Math.random() * 25000) + 15000;
-      setEarnings(newEarnings);
-    }, 2000); // Update every 2 seconds
-
-    return () => clearInterval(interval);
-  }, []);
-
-  return (
-    <div className="finance-amount">
-      <SlotCounter value={earnings} />
-    </div>
-  );
-};
 
 const UnstableDashboard = () => {
-  const { logout } = useContext(DataContext)
-  const { user, updateBalance } = useContext(DataContext)
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
-  const [isModalopen, setModalOpen] = useState(false);
-  const [depositAmount, setDepositAmount] = useState(0);
-  const [lastResult, setLastResult] = useState(null);
-
-  const handleFlipResult = (didWin) => {
-    setLastResult(false);
-    if (didWin) {
-      updateBalance("Deposit Doubled!", depositAmount*2, user);
-    } else {
-    }
-  };
-
-  const handleDepositAttempt = () => {
-    setLastResult(null)
-    if(depositAmount > 0){
-      setModalOpen(true)
-    }
-  };
-
-  const handleDeposit = () => {
-    if(lastResult==null){
-      updateBalance("Deposit", depositAmount, user);
-    }
-  };
 
   const toggleSidebar = () => {
     setSidebarCollapsed(!sidebarCollapsed);
@@ -167,7 +117,7 @@ const UnstableDashboard = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link" onSubmit={(e) => logout(e)}>
+              <Link to="/login" className="nav-link">
                 <LogOut size={20} />
                 <span className="nav-text">Logout</span>
               </Link>
@@ -181,7 +131,7 @@ const UnstableDashboard = () => {
               {/* Left Column */}
               <div className="col-md-6">
                 {/* Row 1: Finance Cards for Checking & Savings */}
-                <div className="row mb-2">
+                <div className="row mb-3">
                   <div className="col-12">
                     <div className="financial-overview">
                       {/* Reworked finance cards for Checking and Savings */}
@@ -191,7 +141,7 @@ const UnstableDashboard = () => {
                         </div>
                         <div className="finance-details">
                           <div className="finance-label">Checking</div>
-                          <div className="finance-amount">${user.balance}</div>
+                          <div className="finance-amount">$4,816</div>
                         </div>
                       </div>
                       <div className="finance-card">
@@ -213,29 +163,9 @@ const UnstableDashboard = () => {
                     <div className="transactions-section">
                       <div className="section-header">
                         <h3>Recent Earnings!!</h3>
-                        <div className="finance-details">
-                          <div className="finance-label">Deposit</div>
-                          <div className="finance-amount-input">
-                            <input
-                                type="number"
-                                defaultValue={0}
-                                className="amount-input"
-                                onChange={(e) => setDepositAmount(e.target.value)}
-                            />
-                            <button className="update-button" onClick={handleDepositAttempt}>Deposit</button>
-                          </div>
-
-                          {isModalopen && (
-                              <Modal onClose={() => {
-                                setModalOpen(false);
-                                handleDeposit(); // Replace this with whatever function you want to run
-                              }}>
-                                <h2>DOUBLE NOW</h2>
-                                <p>With just a click deposit {depositAmount*2}!</p>
-                                <CoinFlipGame onResult={handleFlipResult} />
-                              </Modal>
-                          )}
-                        </div>
+                        <button className="btn btn-primary">
+                          Make a Deposit
+                        </button>
                       </div>
                       <div className="transaction-list">
                         <div className="transaction-item">
@@ -256,7 +186,7 @@ const UnstableDashboard = () => {
                             <div className="transaction-type">
                               Gambling Funds from IRS?
                             </div>
-                            <div className="transaction-card">**** **** 1234</div>
+                            <div className="transaction-card">1234 ****</div>
                           </div>
                           <div className="transaction-right">
                             <div className="transaction-status">
@@ -285,7 +215,7 @@ const UnstableDashboard = () => {
                             <div className="transaction-type">
                               Straight from the US Treasury
                             </div>
-                            <div className="transaction-card">**** **** 8933</div>
+                            <div className="transaction-card">8933 ****</div>
                           </div>
                           <div className="transaction-right">
                             <div className="transaction-status">Classified</div>
@@ -312,7 +242,7 @@ const UnstableDashboard = () => {
                             <div className="transaction-type">
                               Imagine if you went all in on black tho? &#128064;
                             </div>
-                            <div className="transaction-card">**** **** 1738</div>
+                            <div className="transaction-card">1738 ****</div>
                           </div>
                           <div className="transaction-right">
                             <div className="transaction-status">Approved</div>
@@ -329,31 +259,30 @@ const UnstableDashboard = () => {
                 <div className="row">
                   <div className="col-12">
                     <div className="chart-container chart-cards">
-                      <div className="row">
-                        <div className="col-md-6">
-                          <div className="chart-card">
-                            <div className="card-header">
-                              <h3>Savings</h3>
-                            </div>
-                            <div className="card-body">
-                              <p>Account Over Time</p>
-                              <div className="chart-placeholder">
-                                <Savings />
-                              </div>
+                      <div className="col-md-6">
+                        <div className="chart-card">
+                          <div className="card-header">
+                            <h3>Savings</h3>
+                          </div>
+                          <div className="card-body">
+                            <p>Account Over Time</p>
+                            <p>APY: 2.5%</p>
+                            <div className="chart-placeholder">
+                              {/* Insert Savings Chart Component Here */}
                             </div>
                           </div>
                         </div>
-                        {/* Stocks Card */}
-                        <div className="col-md-6">
-                          <div className="chart-card">
-                            <div className="card-header">
-                              <h3>Stock Portfolio</h3>
-                            </div>
-                            <div className="card-body">
-                              <p>Earnings/Losses: +$1,200 / -$300</p>
-                              <div className="chart-placeholder">
-                                <Stock />
-                              </div>
+                      </div>
+                      {/* Stocks Card */}
+                      <div className="col-md-6">
+                        <div className="chart-card">
+                          <div className="card-header">
+                            <h3>Stock Portfolio</h3>
+                          </div>
+                          <div className="card-body">
+                            <p>Earnings/Losses: +$1,200 / -$300</p>
+                            <div className="chart-placeholder">
+                              <Stocks />
                             </div>
                           </div>
                         </div>
@@ -366,23 +295,11 @@ const UnstableDashboard = () => {
               {/* Right Column */}
               <div className="col-md-6">
                 {/* Row 1: Potential Winnings */}
-                <div className="row mb-2">
+                <div className="row mb-3">
                   <div className="col-12">
                     <div className="winnings-section">
+                      <h3>Potential Winnings</h3>
                       {/* Display potential winnings based on recent wins */}
-                      <div className="finance-card">
-                        <div className="finance-icon blue">
-                          <Crown size={30} />
-                        </div>
-                        <div className="finance-details">
-                          <div className="finance-label">
-                            Our Other Users' Winnings
-                          </div>
-                          <div className="finance-amount">
-                            <PotentialEarningsCounter />
-                          </div>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>
@@ -391,11 +308,10 @@ const UnstableDashboard = () => {
                 <div className="row mb-3">
                   <div className="col-12">
                     <div className="roulette-section">
+                      <h3>Place Your Bet</h3>
                       <div className="gambling-box">
-                        {!isModalopen && <RouletteSpinner />}
-                      </div>
                         <RouletteSpinner />
-                      </div>
+                    </div>
                     </div>
                   </div>
                 </div>
