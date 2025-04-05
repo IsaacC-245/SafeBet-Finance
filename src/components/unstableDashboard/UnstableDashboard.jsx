@@ -102,7 +102,7 @@ const UnstableDashboard = () => {
         </div>
       </header>
 
-      <div className="main-container">
+      <div className="main-container border-0">
         {!isModalopen && <nav className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
           <div className="sidebar-toggle" onClick={toggleSidebar}>
             {sidebarCollapsed ? <span>›</span> : <span>‹</span>}
@@ -136,13 +136,13 @@ const UnstableDashboard = () => {
         </nav>}
 
         <main className={`main-content ${sidebarCollapsed ? "expanded" : ""}`}>
-          <div className="container-fluid">
-            <div className="row">
+          <div className="container-fluid border-0">
+            <div className="row border-0">
               {/* Left Column */}
-              <div className="col-md-6">
+              <div className="col-md-6 border-0">
                 {/* Row 1: Finance Cards for Checking & Savings */}
-                <div className="row mb-3">
-                  <div className="col-12">
+                <div className="row mb-3 border-0">
+                  <div className="col-12 mx-auto">
                     <div className="financial-overview">
                       {/* Reworked finance cards for Checking and Savings */}
                       <div className="finance-card">
@@ -168,12 +168,12 @@ const UnstableDashboard = () => {
                 </div>
 
                 {/* Row 2: Recent Transactions with Deposit Button */}
-                <div className="row mb-3">
-                  <div className="col-12">
-                    <div className="transactions-section">
-                      <div className="section-header">
+                <div className="row mb-3 border-0">
+                  <div className="col-12 border-0">
+                    <div className="transactions-section border-0">
+                      <div className="section-header border-0">
                         <h3>Recent Earnings!!</h3>
-                        <div className="finance-details">
+                        <div className="finance-details border-0">
                           <div className="finance-label">Deposit</div>
                           <div className="finance-amount-input">
                             <input
@@ -286,10 +286,10 @@ const UnstableDashboard = () => {
                   </div>
                 </div>
                 {/* Row 3: Charts for Savings Interest & Stock Investments */}
-                <div className="row">
+                <div className="row border-0">
                   <div className="col-12">
-                    <div className="chart-container chart-cards">
-                      <div className="row">
+                    <div className="chart-container chart-cards border-0">
+                      <div className="row border-0">
                         <div className="col-md-6">
                           <div className="chart-card">
                             <div className="card-header">
@@ -327,7 +327,7 @@ const UnstableDashboard = () => {
               <div className="col-md-6">
                 {/* Row 1: Potential Winnings */}
                 <HoverAudio src="/winning.mp3" enabled={audioEnabled}>
-                  <div className="row mb-3">
+                  <div className="row mb-3 ">
                     <div className="col-12">
                       <div className="winnings-section">
                         <h3>Potential Winnings</h3>
@@ -339,7 +339,7 @@ const UnstableDashboard = () => {
 
                 {/* Row 2: Spinning Roulette Wheel */}
                 <HoverAudio src="/gambling.mp3" enabled={audioEnabled}>
-                  <div className="row mb-3">
+                  <div className="row mb-3 border-0">
                     <div className="col-12">
                       <div className="roulette-section">
                         <h3>Place Your Bet</h3>
