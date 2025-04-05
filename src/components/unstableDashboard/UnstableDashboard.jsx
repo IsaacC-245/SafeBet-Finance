@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {useContext, useState} from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
@@ -27,10 +27,12 @@ import {
   Vault, SpeakerIcon,
 } from "lucide-react";
 import HoverAudio from "../HoverAudio";
+import {DataContext} from "../../DataProvider";
 
 const UnstableDashboard = () => {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [audioEnabled, setAudioEnabled] = useState(false);
+  const { user, logout } = useContext(DataContext)
 
   const enableAudio = () => {
     setAudioEnabled(true);
@@ -99,7 +101,7 @@ const UnstableDashboard = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link to="/login" className="nav-link">
+              <Link to="/login" className="nav-link" onClick={(e) => logout(e)}>
                 <LogOut size={20} />
                 <span className="nav-text">Logout</span>
               </Link>
@@ -123,7 +125,7 @@ const UnstableDashboard = () => {
                         </div>
                         <div className="finance-details">
                           <div className="finance-label">Checking</div>
-                          <div className="finance-amount">$4,816</div>
+                          <div className="finance-amount">${user.balance}</div>
                         </div>
                       </div>
                       <div className="finance-card">
