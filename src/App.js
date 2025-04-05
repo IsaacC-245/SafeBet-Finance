@@ -1,36 +1,37 @@
-import './App.css';
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import NoPage from './components/NoPage'
-import Login from './components/login/Login'
-import Register from './components/login/Register'
-import Dashboard from './components/dashboard/Dashboard'
-import SplitPage from './components/splitPage/SplitPage'
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import NoPage from "./components/NoPage";
+import Login from "./components/login/Login";
+import Register from "./components/login/Register";
+import SplitPage from "./components/splitPage/SplitPage";
 import DataProvider from "./DataProvider";
-import Dashboard2 from "./components/dashboardTransactionTesting/Dashboard"
+import Dashboard2 from "./components/dashboardTransactionTesting/Dashboard";
 import ModalDemo from "./components/ModalDemo/ModalDemo";
 import SpinnerModal from "./components/spinner/spinnerModal";
 import Transactions from "./components/Transactions/transactions";
-import UnstableDashboard from './components/unstableDashboard/UnstableDashboard';
-
+import UnstableDashboard from "./components/unstableDashboard/UnstableDashboard";
 
 function App() {
   return (
-      <DataProvider>
-          <BrowserRouter>
-            <Routes>
-                <Route path="/login" element={<Login />} />
-                <Route path="/dashboard" element={<Dashboard />} />
-                <Route path="/transactions" element={<Transactions />} />
-                <Route path="/dashboard2" element={<Dashboard2 />} />
-                <Route path="/SplitTesting" element={<SplitPage />} />
-                <Route path="/Demo" element={<ModalDemo/>}/>
-                <Route path="*" element={<NoPage />} />
-                <Route path="/register" element={<Register />} />
-                <Route path="/spinnerModal" element={<SpinnerModal/>}/>
-		<Route path="/unstable-dashboard" element={<UnstableDashboard />} />
-            </Routes>
-          </BrowserRouter>
-      </DataProvider>
+    <DataProvider>
+      <BrowserRouter>
+        <Routes>
+          {/* Production Routes*/}
+          <Route path="*" element={<NoPage />} />
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/register" element={<Register />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/dashboard" element={<UnstableDashboard />} />
+          <Route path="/transactions" element={<Transactions />} />
+
+          {/* Testing Routes*/}
+          <Route path="/SplitTesting" element={<SplitPage />} />
+          <Route path="/Demo" element={<ModalDemo />} />
+          <Route path="/dashboard2" element={<Dashboard2 />} />
+          <Route path="/spinnerModal" element={<SpinnerModal />} />
+        </Routes>
+      </BrowserRouter>
+    </DataProvider>
   );
 }
 
