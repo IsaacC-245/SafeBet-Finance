@@ -103,7 +103,7 @@ const UnstableDashboard = () => {
       </header>
 
       <div className="main-container">
-        <nav className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
+        {!isModalopen && <nav className={`sidebar ${sidebarCollapsed ? "collapsed" : ""}`}>
           <div className="sidebar-toggle" onClick={toggleSidebar}>
             {sidebarCollapsed ? <span>›</span> : <span>‹</span>}
           </div>
@@ -133,7 +133,7 @@ const UnstableDashboard = () => {
               </Link>
             </li>
           </ul>
-        </nav>
+        </nav>}
 
         <main className={`main-content ${sidebarCollapsed ? "expanded" : ""}`}>
           <div className="container-fluid">
