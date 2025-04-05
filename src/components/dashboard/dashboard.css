@@ -2,6 +2,7 @@
 :root {
 	--primary-blue: #2b4bc9;
 	--light-blue: #5f75e2;
+	--red-color: #e25f5f;
 	--background-color: #f7f9fc;
 	--card-bg-color: #ffffff;
 	--text-color: #333333;
@@ -11,15 +12,19 @@
 	--negative-color: #f44336;
 	--chart-debit: #2b4bc9;  
 	--chart-credit: #a2adf8;
+	--sidebar-width: 240px;
+	--sidebar-collapsed-width: 70px;
+	--transition-speed: 0.3s;
       }
       
-      .safe-bet-app {
+      .safeBet-app {
 	font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 	background-color: var(--background-color);
 	color: var(--text-color);
 	min-height: 100vh;
       }
       
+      /* Header styling */
       .app-header {
 	display: flex;
 	justify-content: space-between;
@@ -47,12 +52,16 @@
 	margin-right: -8px;
       }
       
-      .black-blue {
-	background-color: var(#3047a3);
+      .blue {
+	background-color: var(--primary-blue);
       }
       
       .red {
-	background-color: var(#683024);
+	background-color: var(--red-color);
+      }
+      
+      .light-blue {
+	background-color: var(--light-blue);
       }
       
       .logo-text {
@@ -121,16 +130,44 @@
 	object-fit: cover;
       }
       
+      /* Main Container Layout */
       .main-container {
 	display: flex;
 	height: calc(100vh - 72px);
       }
       
+      /* Sidebar */
       .sidebar {
-	width: 240px;
+	width: var(--sidebar-width);
 	background-color: var(--card-bg-color);
 	border-right: 1px solid var(--border-color);
 	padding: 1.5rem 0;
+	transition: width var(--transition-speed) ease;
+	position: relative;
+	z-index: 10;
+	flex-shrink: 0; /* Prevent sidebar from shrinking */
+      }
+      
+      .sidebar.collapsed {
+	width: var(--sidebar-collapsed-width);
+      }
+      
+      /* Sidebar toggle button */
+      .sidebar-toggle {
+	position: absolute;
+	top: 10px;
+	right: -12px;
+	width: 24px;
+	height: 24px;
+	background-color: var(--primary-blue);
+	color: white;
+	border-radius: 50%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	cursor: pointer;
+	z-index: 100;
+	box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
       }
       
       .nav-links {
@@ -150,6 +187,8 @@
 	color: var(--light-text);
 	text-decoration: none;
 	border-left: 3px solid transparent;
+	white-space: nowrap;
+	overflow: hidden;
       }
       
       .nav-item.active .nav-link {
@@ -159,20 +198,53 @@
       }
       
       .nav-link svg {
+	min-width: 20px;
 	margin-right: 0.8rem;
       }
       
+      .sidebar.collapsed .nav-text {
+	opacity: 0;
+	visibility: hidden;
+	transition: opacity var(--transition-speed) ease;
+      }
+      
+      .nav-text {
+	opacity: 1;
+	visibility: visible;
+	transition: opacity var(--transition-speed) ease;
+      }
+      
+      /* Main Content */
       .main-content {
 	flex-grow: 1;
 	padding: 2rem;
 	overflow-y: auto;
+	transition: margin-left var(--transition-speed) ease;
+	width: calc(100% - var(--sidebar-width));
       }
       
+      .main-content.expanded {
+	width: calc(100% - var(--sidebar-collapsed-width));
+      }
+      
+      /* Financial Overview Cards */
       .financial-overview {
 	display: grid;
 	grid-template-columns: repeat(4, 1fr);
 	gap: 1.5rem;
 	margin-bottom: 2rem;
+      }
+      
+      @media (max-width: 1200px) {
+	.financial-overview {
+	  grid-template-columns: repeat(2, 1fr);
+	}
+      }
+      
+      @media (max-width: 768px) {
+	.financial-overview {
+	  grid-template-columns: 1fr;
+	}
       }
       
       .finance-card {
@@ -210,11 +282,18 @@
 	font-weight: 600;
       }
       
+      /* Transactions and Card row */
       .transactions-cards-row {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	gap: 1.5rem;
 	margin-bottom: 2rem;
+      }
+      
+      @media (max-width: 992px) {
+	.transactions-cards-row {
+	  grid-template-columns: 1fr;
+	}
       }
       
       .section-header {
@@ -239,6 +318,7 @@
 	font-weight: 500;
       }
       
+      /* Transactions Section */
       .transactions-section, .my-card-section {
 	background-color: var(--card-bg-color);
 	border-radius: 12px;
@@ -327,6 +407,7 @@
 	color: var(--negative-color);
       }
       
+      /* Credit Card */
       .credit-card {
 	background-color: var(--primary-blue);
 	border-radius: 16px;
@@ -414,10 +495,17 @@
 	background-color: #ffeb3b;
       }
       
+      /* Debit Credit and Invoices Row */
       .debit-credit-invoices-row {
 	display: grid;
 	grid-template-columns: 2fr 1fr;
 	gap: 1.5rem;
+      }
+      
+      @media (max-width: 992px) {
+	.debit-credit-invoices-row {
+	  grid-template-columns: 1fr;
+	}
       }
       
       .debit-credit-section, .invoices-section {
@@ -432,6 +520,17 @@
 	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 1rem;
+      }
+      
+      @media (max-width: 576px) {
+	.debit-credit-info {
+	  flex-direction: column;
+	  align-items: flex-start;
+	}
+	
+	.chart-legend {
+	  margin-top: 1rem;
+	}
       }
       
       .debit-credit-summary {
@@ -521,6 +620,7 @@
 	color: var(--light-text);
       }
       
+      /* Invoices Section */
       .invoice-list {
 	display: flex;
 	flex-direction: column;
@@ -568,34 +668,4 @@
       .invoice-date {
 	font-size: 0.8rem;
 	color: var(--light-text);
-      }
-      
-      .invoice-amount {
-	font-weight: 600;
-	font-size: 1rem;
-      }
-      
-      @media (max-width: 1200px) {
-	.financial-overview {
-	  grid-template-columns: repeat(2, 1fr);
-	}
-	
-	.transactions-cards-row,
-	.debit-credit-invoices-row {
-	  grid-template-columns: 1fr;
-	}
-      }
-      
-      @media (max-width: 768px) {
-	.sidebar {
-	  display: none;
-	}
-	
-	.main-container {
-	  flex-direction: column;
-	}
-	
-	.financial-overview {
-	  grid-template-columns: 1fr;
-	}
       }
