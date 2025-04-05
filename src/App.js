@@ -4,6 +4,7 @@ import NoPage from './components/NoPage'
 import Login from './components/login/Login'
 import Register from './components/login/Register'
 import Dashboard from './components/dashboard/Dashboard'
+import SplitPage from './components/splitPage/SplitPage'
 import DataProvider from "./DataProvider";
 
 
@@ -14,6 +15,7 @@ function App() {
             <Routes>
                 <Route path="/login" element={<Login />} />
                 <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/SplitTesting" element={<SplitPage />} />
                 <Route path="*" element={<NoPage />} />
                 <Route path="/register" element={<Register />} />
             </Routes>
