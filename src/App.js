@@ -10,6 +10,7 @@ import Dashboard2 from "./components/dashboardTransactionTesting/Dashboard"
 import ModalDemo from "./components/ModalDemo/ModalDemo";
 import SpinnerModal from "./components/spinner/spinnerModal";
 import Transactions from "./components/Transactions/transactions";
+import UnstableDashboard from './components/unstableDashboard/UnstableDashboard';
 
 
 function App() {
@@ -26,6 +27,7 @@ function App() {
                 <Route path="*" element={<NoPage />} />
                 <Route path="/register" element={<Register />} />
                 <Route path="/spinnerModal" element={<SpinnerModal/>}/>
+		<Route path="/unstable-dashboard" element={<UnstableDashboard />} />
             </Routes>
           </BrowserRouter>
       </DataProvider>
