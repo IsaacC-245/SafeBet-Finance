@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./unstableDashboard.css";
 import { Link } from "react-router-dom";
+import RouletteSpinner from "../spinner/rouletteSpinner";
 
 import dogeUser from "../../assets/imgs/doge-user.jpg";
 
@@ -307,7 +308,9 @@ const UnstableDashboard = () => {
                   <div className="col-12">
                     <div className="roulette-section">
                       <h3>Place Your Bet</h3>
-                      {/* Integrate your roulette wheel component here */}
+                      <div className="gambling-box">
+                        <RouletteSpinner />
+                    </div>
                     </div>
                   </div>
                 </div>
