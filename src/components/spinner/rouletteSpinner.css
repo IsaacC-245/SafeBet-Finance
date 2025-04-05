@@ -6,11 +6,11 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  height: 100vh;
+  height: 60vh;
 }
 
 .controls {
-  margin-bottom: 20px;
+  /*margin-bottom: 20px;*/
 }
 
 .controls button {
@@ -125,23 +125,23 @@
 .roulette .button {
   width: 10em;
   height: 10em;
-  line-height: 10em;
+  line-height: 1.5em;
   top: 50%;
   left: 50%;
   margin-left: -5em;
   margin-top: -5em;
-  font-weight: 800;
-  z-index: 998;
+  font-weight: 700;
+  /*z-index: 998;*/
   position: absolute;
   background: #fff;
   border: none;
   border-radius: 100%;
-  color: #303030;
+  /*color: #FFF;*/
   outline: none;
   cursor: pointer;
   user-select: none;
   box-shadow: 0 0.4em 0 rgba(0, 0, 0, 0.25);
-  text-align: center;
+  /*text-align: center;*/
   transition: transform 0.15s;
   transition-timing-function: cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
@@ -151,8 +151,10 @@
 }
 
 .roulette .button span {
-  font-size: 1.6em;
+  font-size: 1.3em;
   letter-spacing: -0.05em;
+  transform: translateY(50px);
+  display: block;
 }
 
 .roulette.busy .button {
